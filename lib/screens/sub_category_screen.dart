@@ -1,27 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:mobile_application_class/Models/category_model.dart';
 
 class SubCategoryScreen extends StatelessWidget {
-  final dynamic category;
+  final Category category;
 
-  const SubCategoryScreen({super.key, required this.category});
+  SubCategoryScreen({required this.category});
 
-  // Handle the data of each category
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(category['title']),
+        title: Text(category.strCategory),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Title: ${category['title']}',
-                style:
-                    const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 10),
-            Text('Body: ${category['body']}'),
+            Hero(
+              tag: category.idCategory,
+              child: Image.network(category.strCategoryThumb),
+            ),
+            SizedBox(height: 16),
+            Text(
+              category.strCategoryDescription,
+              style: TextStyle(fontSize: 16),
+            ),
           ],
         ),
       ),
